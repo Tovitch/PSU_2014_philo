@@ -5,7 +5,7 @@
 ** Login   <kruszk_t@epitech.net>
 **
 ** Started on  Mon Jun 22 14:58:39 2015 Tony Kruszkewycz
-** Last update Tue Jun 23 10:49:41 2015 Tony Kruszkewycz
+** Last update Wed Jun 24 16:51:17 2015 Tony Kruszkewycz
 */
 
 #include	<stdlib.h>
@@ -44,7 +44,8 @@ static t_philo	*philo_init()
   pthread_mutex_init(&philo->m_left_stick, NULL);
   while (i < MAX_PHILO)
     {
-      philo->next = add_philo(i + 1);
+      if (!(philo->next = add_philo(i + 1)))
+	return (NULL);
       philo->m_right_stick = &philo->next->m_left_stick;
       philo->next->prev = philo;
       philo = philo->next;
